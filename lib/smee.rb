@@ -64,9 +64,13 @@ class SmeeClient
   end
 
   def post(body, query, headers)
+    # Clone our target so we can append fresh query params
+    target = @target.clone
+    target.query = query
+
     # Setup the HTTP request
-    http = Net::HTTP.new(@target.host, @target.port)
-    request = Net::HTTP::Post.new(@target.request_uri, headers)
+    http = Net::HTTP.new(target.host, target.port)
+    request = Net::HTTP::Post.new(target.request_uri, headers)
 
     # Attach the body
     request.body = body
