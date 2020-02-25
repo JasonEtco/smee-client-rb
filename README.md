@@ -19,3 +19,5 @@ client.start
 ```
 
 Now when events come in, they'll be automatically `POST`-ed to the configured target URL.
+
+> Heads up! The client doesn't stay open indefinitely; it's designed to be part of a running process like a server listening for connections. If that doesn't work for you, you may prefer [the `smee-client` CLI](https://github.com/probot/smee-client/#cli).
