@@ -18,6 +18,7 @@ class SmeeClient
   end
 
   def close
+    puts '[SmeeClient]: Closing connection'
     @events.close
   end
 
