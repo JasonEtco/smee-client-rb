@@ -3,8 +3,8 @@
 require './lib/smee'
 
 client = SmeeClient.new(
-  'https://smee.io/jasons-testing-url',
-  'http://localhost:3000/'
+  source: 'https://smee.io/jasons-testing-url',
+  target: 'http://localhost:3000/'
 )
 
 client.start
