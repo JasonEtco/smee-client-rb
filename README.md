@@ -6,7 +6,7 @@
 ### Installation
 
 ```sh
-$ gem install smee-client
+$ gem install smee
 ```
 
 ## How it works
