@@ -4,9 +4,15 @@ require 'uri'
 require 'net/http'
 require 'json'
 require 'ld-eventsource'
+require 'httparty'
 
 # The main Smee client class
 class SmeeClient
+  def self.create_channel
+    response = HTTParty.head('https://smee.io/new', follow_redirects: false)
+    response.headers['location']
+  end
+
   def initialize(source:, target:)
     @source = source
     @target = URI.parse(target)
