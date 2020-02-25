@@ -13,7 +13,7 @@ class SmeeClient
   end
 
   def start
-    puts 'Starting SmeeClient'
+    puts "[SmeeClient]: Listening for events at #{@source}"
     subscribe
   end
 
@@ -39,14 +39,16 @@ class SmeeClient
   end
 
   def post(body)
-    puts body
-
-    header = { 'Content-Type': 'application/json' }
+    # Setup the HTTP request
     http = Net::HTTP.new(@target.host, @target.port)
+    header = { 'Content-Type': 'application/json' }
     request = Net::HTTP::Post.new(@target.request_uri, header)
-    request.body = body
-    res = http.request(request)
 
-    puts res.body
+    # Attach the body
+    request.body = body
+
+    # Make the POST request
+    res = http.request(request)
+    puts "[SmeeClient]: Pushed event, response: #{res.body}"
   end
 end
