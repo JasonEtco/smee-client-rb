@@ -17,10 +17,14 @@ class SmeeClient
     subscribe
   end
 
+  def close
+    @events.close
+  end
+
   private
 
   def subscribe
-    SSE::Client.new(@source) do |client|
+    @events = SSE::Client.new(@source) do |client|
       client.on_event do |event|
         handle_event event
       end
