@@ -39,14 +39,32 @@ class SmeeClient
     json = JSON.parse event.data
     return unless json.key?('body')
 
-    post(json['body'].to_json)
+    body = json['body'].to_json
+    headers = copy_headers(json)
+    post(body, headers)
   end
 
-  def post(body)
+  def copy_headers(json)
+    headers = {
+      'Content-Type': 'application/json'
+    }
+
+    # Don't want to include these as headers
+    json.delete 'body'
+    json.delete 'query'
+
+    json.each do |key, value|
+      # We need to ensure that headers are strings
+      headers[key] = value.to_s
+    end
+
+    headers
+  end
+
+  def post(body, headers)
     # Setup the HTTP request
     http = Net::HTTP.new(@target.host, @target.port)
-    header = { 'Content-Type': 'application/json' }
-    request = Net::HTTP::Post.new(@target.request_uri, header)
+    request = Net::HTTP::Post.new(@target.request_uri, headers)
 
     # Attach the body
     request.body = body
