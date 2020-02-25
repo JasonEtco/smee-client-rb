@@ -1,5 +1,5 @@
 <h3 align="center">Smee Client (Ruby)</h3>
-<p align="center">A programmatic client for Smee, in Ruby.<p>
+<p align="center">A programmatic client for <a href="https://smee.io">Smee</a>, in Ruby.<p>
 
 ## Usage
 
@@ -9,6 +9,13 @@
 $ gem install smee
 ```
 
-## How it works
+```ruby
+client = SmeeClient.new(
+  source: 'https://smee.io/<channel>',
+  target: 'http://localhost:3000/'
+)
 
-Like magic!
+client.start
+```
+
+Now when events come in, they'll be automatically `POST`-ed to the configured target URL.
