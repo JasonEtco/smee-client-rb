@@ -8,3 +8,4 @@ client = SmeeClient.new(
 )
 
 client.start
+sleep 60
