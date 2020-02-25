@@ -12,6 +12,13 @@ class SmeeClient
     @target = URI.parse(target)
   end
 
+  def start
+    puts 'Starting SmeeClient'
+    subscribe
+  end
+
+  private
+
   def subscribe
     SSE::Client.new(@source) do |client|
       client.on_event do |event|
@@ -23,13 +30,6 @@ class SmeeClient
       end
     end
   end
-
-  def start
-    puts 'Starting SmeeClient'
-    subscribe
-  end
-
-  private
 
   def handle_event(event)
     json = JSON.parse event.data
