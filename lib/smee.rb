@@ -40,8 +40,10 @@ class SmeeClient
     return unless json.key?('body')
 
     body = json['body'].to_json
+    query = URI.encode_www_form(json['query'])
     headers = copy_headers(json)
-    post(body, headers)
+
+    post(body, query, headers)
   end
 
   def copy_headers(json)
@@ -61,7 +63,7 @@ class SmeeClient
     headers
   end
 
-  def post(body, headers)
+  def post(body, query, headers)
     # Setup the HTTP request
     http = Net::HTTP.new(@target.host, @target.port)
     request = Net::HTTP::Post.new(@target.request_uri, headers)
