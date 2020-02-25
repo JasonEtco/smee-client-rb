@@ -46,8 +46,9 @@ class SmeeClient
     json = JSON.parse event.data
     return unless json.key?('body')
 
-    body = json['body'].to_json
-    query = URI.encode_www_form(json['query'])
+    body = json['body']
+    query = json['query']
+
     headers = copy_headers(json)
 
     post(body, query, headers)
@@ -71,19 +72,13 @@ class SmeeClient
   end
 
   def post(body, query, headers)
-    # Clone our target so we can append fresh query params
-    target = @target.clone
-    target.query = query
+    # Send an HTTP request
+    response = HTTParty.post(@target, {
+      query: query,
+      body: body.to_json,
+      headers: headers
+    })
 
-    # Setup the HTTP request
-    http = Net::HTTP.new(target.host, target.port)
-    request = Net::HTTP::Post.new(target.request_uri, headers)
-
-    # Attach the body
-    request.body = body
-
-    # Make the POST request
-    res = http.request(request)
-    puts "[SmeeClient]: Pushed event, response: #{res.body}"
+    puts "[SmeeClient]: Pushed event, response: #{response.body}"
   end
 end
