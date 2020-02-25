@@ -3,7 +3,7 @@
 
 ## Usage
 
-### Installation (not actually published)
+### Installation
 
 ```sh
 $ gem install smee
