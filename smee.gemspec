@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'smee'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.date        = '2020-02-26'
   s.summary     = 'A programmatic client for Smee.'
   s.description =
