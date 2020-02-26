@@ -13,4 +13,9 @@ Gem::Specification.new do |s|
   s.homepage    =
     'https://rubygems.org/gems/smee'
   s.license     = 'MIT'
+
+  s.required_ruby_version     = '>= 2.0.0'
+
+  s.add_dependency('ld-eventsource', '~> 1.0')
+  s.add_dependency('httparty', '~> 0.18.0')
 end
