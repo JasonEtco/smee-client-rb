@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = 'jasonetco@gmail.com'
   s.files       = ['lib/smee.rb']
   s.homepage    =
-    'https://rubygems.org/gems/smee'
+    'https://github.com/JasonEtco/smee-client-rb'
   s.license     = 'MIT'
 
   s.required_ruby_version     = '>= 2.0.0'
